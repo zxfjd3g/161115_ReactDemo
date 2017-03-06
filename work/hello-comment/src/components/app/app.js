@@ -25,6 +25,22 @@ export default class App extends Component {
     this.setState({comments})
   }
 
+  add = (comment) => {  //使用箭头函数 this直接就是组件对象
+    const {comments} = this.state
+    //添加
+    comments.unshift(comment)
+    //更新状态
+    this.setState({comments})
+  }
+
+  remove = (index) => {
+    const {comments} = this.state
+    //删除
+    comments.splice(index, 1)
+    //更新状态
+    this.setState({comments})
+  }
+
   render () {
     return (
       <div>
@@ -38,8 +54,8 @@ export default class App extends Component {
           </div>
         </header>
         <div className="container">
-          <Add />
-          <List comments={this.state.comments}/>
+          <Add add={this.add}/>
+          <List comments={this.state.comments} remove={this.remove}/>
         </div>
       </div>
     )
