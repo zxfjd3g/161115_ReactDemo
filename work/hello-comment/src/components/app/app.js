@@ -9,25 +9,14 @@ export default class App extends Component {
 
   constructor (props) {
     super(props)
-    //初始化状态
     this.state = {
       comments: []
     }
   }
 
-  componentDidMount () {
-    //模拟请求获取数据
-    const comments = [
-      {username: '赵伟', content: '受不了!!!'},
-      {username: '马超', content: '很爽!'}
-    ]
-    //更新状态
-    this.setState({comments})
-  }
-
-  add = (comment) => {  //使用箭头函数 this直接就是组件对象
+  add = (comment) => {
     const {comments} = this.state
-    //添加
+    //处理(添加)
     comments.unshift(comment)
     //更新状态
     this.setState({comments})
@@ -35,29 +24,40 @@ export default class App extends Component {
 
   remove = (index) => {
     const {comments} = this.state
-    //删除
+    //处理(删除)
     comments.splice(index, 1)
     //更新状态
     this.setState({comments})
   }
 
-  render () {
-    return (
-      <div>
-        <header className="site-header jumbotron">
-          <div className="container">
-            <div className="row">
-              <div className="col-xs-12">
-                <h1>请发表对React的评论</h1>
-              </div>
-            </div>
-          </div>
-        </header>
-        <div className="container">
-          <Add add={this.add}/>
-          <List comments={this.state.comments} remove={this.remove}/>
-        </div>
-      </div>
-    )
+  componentWillMount () {
+    //模拟请求获取数据
+    const comments = [
+      {username: 'xxxx', content: 'haohao'},
+      {username: 'yyy', content: 'hahaha'}
+    ]
+    //更新状态
+    this.setState({comments})
   }
+
+
+ render() {
+   return (
+     <div>
+       <header className="site-header jumbotron">
+         <div className="container">
+           <div className="row">
+             <div className="col-xs-12">
+               <h1>请发表对React的评论</h1>
+             </div>
+           </div>
+         </div>
+       </header>
+       <div className="container">
+        <Add add={this.add}/>
+        <List comments={this.state.comments} remove={this.remove}/>
+       </div>
+     </div>
+   )
+ }
 }

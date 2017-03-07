@@ -6,9 +6,10 @@ import './item.css'
  */
 export default class Item extends Component {
 
-  deleteComment = () => {
-    const {remove, index, comment} = this.props
-    if(confirm(`确定删除${comment.username}的评论吗?`)) {
+
+  removeComment = () => {
+    const {comment, remove, index} = this.props
+    if(confirm(`确定删除${comment.username}的评论?`)) {
       remove(index)
     }
   }
@@ -18,7 +19,7 @@ export default class Item extends Component {
     return (
       <li className="list-group-item">
         <div className="handle">
-          <a href="javascript:;" onClick={this.deleteComment}>删除</a>
+          <a href="javascript:;" onClick={this.removeComment}>删除</a>
         </div>
         <p className="user"><span >{comment.username}</span><span>说:</span></p>
         <p className="centence">{comment.content}</p>

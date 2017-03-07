@@ -8,17 +8,15 @@ export default class Add extends Component {
 
   constructor(props) {
     super(props)
-    //绑定this
-    this.addComment = this.addComment.bind(this)
   }
 
-  addComment () {
-    //收集数据成为对象
+  addComment = () => {
+    //收集数据-->comment
     const comment = {
       username: this.refs.username.value,
       content: this.refs.content.value
     }
-    //添加到comments
+    //添加到comments, 更新界面
     this.props.add(comment)
     //清除输入
     this.refs.username.value = ''
