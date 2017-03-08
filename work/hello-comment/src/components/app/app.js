@@ -1,4 +1,5 @@
 import React, {Component} from 'react'
+import PubSub from 'pubsub-js'
 import Add from '../add'
 import List from '../list/list'
 
@@ -38,6 +39,11 @@ export default class App extends Component {
     ]
     //更新状态
     this.setState({comments})
+
+    //订阅消息(绑定自定义监听)
+    PubSub.subscribe('delete', (message, index) => {
+      this.remove(index)
+    })
   }
 
 

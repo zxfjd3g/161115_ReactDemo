@@ -1,4 +1,6 @@
 import React, {Component, PropTypes} from 'react'
+import PubSub from 'pubsub-js'
+
 import './item.css'
 
 /**
@@ -10,7 +12,9 @@ export default class Item extends Component {
   removeComment = () => {
     const {comment, remove, index} = this.props
     if(confirm(`确定删除${comment.username}的评论?`)) {
-      remove(index)
+      // remove(index)
+      //发布消息(触发自定义事件)
+      PubSub.publish('delete', index)
     }
   }
 
